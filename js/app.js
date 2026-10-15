@@ -94,18 +94,33 @@ function initHeroVideo() {
   const video = document.querySelector('.hero-bg-video');
   if (video) {
     video.muted = true;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Fallback for browsers with strict battery or autoplay rules: start on first touch/click
-        const startOnInteraction = () => {
-          video.play().catch(() => {});
-          document.removeEventListener('touchstart', startOnInteraction);
-          document.removeEventListener('click', startOnInteraction);
-        };
-        document.addEventListener('touchstart', startOnInteraction, { passive: true });
-        document.addEventListener('click', startOnInteraction, { passive: true });
-      });
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const startPlayback = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          const onUserGesture = () => {
+            video.play().catch(() => {});
+            document.removeEventListener('touchstart', onUserGesture);
+            document.removeEventListener('click', onUserGesture);
+            document.removeEventListener('scroll', onUserGesture);
+          };
+          document.addEventListener('touchstart', onUserGesture, { passive: true, once: true });
+          document.addEventListener('click', onUserGesture, { passive: true, once: true });
+          document.addEventListener('scroll', onUserGesture, { passive: true, once: true });
+        });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      startPlayback();
+    } else {
+      video.addEventListener('loadeddata', startPlayback, { once: true });
+      startPlayback();
     }
   }
 }
