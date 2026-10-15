@@ -79,12 +79,36 @@ let lightboxProperty = null;
 let lightboxIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroVideo();
   initNavbar();
   initSliders();
   initFilters();
   initForm();
   initModals();
 });
+
+/* -------------------------------------------------------------
+   Hero Background Video Autoplay Handler
+   ------------------------------------------------------------- */
+function initHeroVideo() {
+  const video = document.querySelector('.hero-bg-video');
+  if (video) {
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback for browsers with strict battery or autoplay rules: start on first touch/click
+        const startOnInteraction = () => {
+          video.play().catch(() => {});
+          document.removeEventListener('touchstart', startOnInteraction);
+          document.removeEventListener('click', startOnInteraction);
+        };
+        document.addEventListener('touchstart', startOnInteraction, { passive: true });
+        document.addEventListener('click', startOnInteraction, { passive: true });
+      });
+    }
+  }
+}
 
 /* -------------------------------------------------------------
    Navbar & Mobile Menu
@@ -121,6 +145,18 @@ function initNavbar() {
           icon.classList.remove('fa-xmark');
         }
       });
+    });
+
+    // Fechar menu ao tocar fora dele no mobile
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !toggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        const icon = toggle.querySelector('i');
+        if (icon) {
+          icon.classList.add('fa-bars');
+          icon.classList.remove('fa-xmark');
+        }
+      }
     });
   }
 }
