@@ -400,6 +400,7 @@ button, input, select, textarea {
   object-position: center;
   pointer-events: none;
   z-index: 0;
+  filter: brightness(1.1) contrast(1.12) saturate(1.18);
 }
 .hero-bg-img {
   width: 100%;
@@ -416,8 +417,8 @@ button, input, select, textarea {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 42%, rgba(10, 15, 26, 0.48) 0%, rgba(8, 12, 22, 0.78) 100%),
-              linear-gradient(to bottom, rgba(10, 15, 26, 0.7) 0%, rgba(10, 15, 26, 0.28) 42%, rgba(8, 12, 22, 0.92) 100%);
+  background: radial-gradient(circle at 50% 45%, rgba(10, 15, 26, 0.12) 0%, rgba(8, 12, 22, 0.45) 100%),
+              linear-gradient(to bottom, rgba(10, 15, 26, 0.38) 0%, rgba(10, 15, 26, 0.08) 45%, rgba(8, 12, 22, 0.58) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -433,7 +434,7 @@ button, input, select, textarea {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.4rem;
-  background-color: rgba(15, 23, 42, 0.85);
+  background-color: rgba(15, 23, 42, 0.88);
   border: 1px solid var(--clr-primary);
   border-radius: var(--radius-full);
   color: var(--clr-primary);
@@ -444,7 +445,7 @@ button, input, select, textarea {
   margin-bottom: 1.5rem;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 .hero-title {
   font-family: var(--font-heading);
@@ -453,20 +454,20 @@ button, input, select, textarea {
   line-height: 1.15;
   color: #ffffff;
   margin-bottom: 1.25rem;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 2px 6px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.98), 0 0 30px rgba(0, 0, 0, 0.8);
 }
 .hero-title span {
   color: var(--clr-primary);
-  text-shadow: 0 4px 28px rgba(212, 175, 55, 0.4), 0 2px 6px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.98);
 }
 .hero-subtitle {
   font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  color: #f1f5f9;
+  color: #ffffff;
   max-width: 820px;
   margin: 0 auto 2.5rem;
   line-height: 1.7;
   font-weight: 400;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.98);
 }
 .hero-subtitle strong {
   color: #ffffff;
@@ -557,6 +558,10 @@ button, input, select, textarea {
 .section-title em {
   font-style: normal;
   color: var(--clr-primary-dark);
+}
+.title-nowrap {
+  white-space: nowrap;
+  display: inline-block;
 }
 .section-description {
   color: var(--clr-text-muted);
@@ -1841,6 +1846,10 @@ button, input, select, textarea {
   }
   .section-title {
     font-size: clamp(1.45rem, 6vw, 1.85rem);
+  }
+  .title-nowrap {
+    white-space: nowrap;
+    display: inline-block;
   }
   .section-pretitle {
     font-size: 0.72rem;
