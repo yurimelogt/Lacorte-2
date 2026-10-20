@@ -459,7 +459,14 @@ function initForm() {
     );
 
     const targetUrl = `https://api.whatsapp.com/send?phone=${data.brokerPhone}&text=${message}`;
-    window.open(targetUrl, '_blank');
+  if (
+  typeof window.gtag === 'function' &&
+  typeof window.gtag_report_conversion === 'function'
+) {
+  window.gtag_report_conversion();
+}
+
+window.open(targetUrl, '_blank');
   };
 
   // Form Submission
@@ -517,7 +524,14 @@ _Enviado através da Landing Page Exclusiva LaCôrte Imóveis_`;
       showToast(`Redirecionando para o WhatsApp com ${brokerName}...`);
 
       setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
+ if (
+  typeof window.gtag === 'function' &&
+  typeof window.gtag_report_conversion === 'function'
+) {
+  window.gtag_report_conversion();
+}
+
+window.open(whatsappUrl, '_blank');
       }, 600);
     });
   }
