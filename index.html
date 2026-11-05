@@ -48,6 +48,9 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
   <!-- Favicon -->
   <link rel="icon" href="images/logo.webp" type="image/webp">
 
+  <!-- Preload Hero Background Image for Instant Display -->
+  <link rel="preload" as="image" href="video%20La%20Corte/3.jpg" fetchpriority="high">
+
   <!-- Google Fonts: Outfit & Playfair Display (Padrão LaCôrte) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,7 +135,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-bg-wrapper">
-      <img class="hero-bg-img" src="video%20La%20Corte/3.png" alt="Mansões Exclusivas em Búzios | LaCôrte Imóveis" fetchpriority="high" decoding="async">
+      <img class="hero-bg-img" src="video%20La%20Corte/3.jpg" alt="Mansões Exclusivas em Búzios | LaCôrte Imóveis" fetchpriority="high" loading="eager" decoding="sync">
       <div class="hero-overlay"></div>
     </div>
 
